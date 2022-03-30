@@ -1,6 +1,3 @@
-library(quantmod)
-library(PerformanceAnalytics)
-
 # helper function to determine rebalancing dates
 get_rebalance_dates <- function(dates, reb_freq, k = 1){
   # for now, we rebalance at the end of period in reb_freq
