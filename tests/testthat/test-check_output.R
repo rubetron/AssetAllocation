@@ -12,6 +12,17 @@ test_that("daily_ret_calc() returns a vector with the correct size", {
   expect_equal(length(output), 21)
 })
 
+# Test that daily_ret_calc() stops in case of wrong dimensions
+test_that("daily_ret_calc() stops if length of w does not match number of columns of R", {
+  # generate some random data
+  set.seed(12345)
+  R <- matrix(rnorm(21*10, 0.01, 0.025), nrow = 21, ncol = 10)
+  w <- runif(9)
+  w <- w/sum(w)
+  expect_error(daily_ret_calc(w, R))
+})
+
+
 # Test that function backtest_allocation produces a list
 test_that("backtest_allocation() returns a list", {
   ## Example 1: backtesting one of the asset allocations in the package
@@ -64,7 +75,7 @@ test_that("backtest_allocation() stops if R is not of class xts", {
   us_60_40 <- basic_asset_alloc$us_60_40
 
   # get only numeric data from ETFs_daily
-  R <- coredata(ETFs_daily)
+  R <- zoo::coredata(ETFs_daily)
 
   expect_error(backtest_allocation(us_60_40, R))
 })
@@ -75,6 +86,7 @@ test_that("backtest_allocation() produces error if tickers not found", {
   us_60_40 <- basic_asset_alloc$us_60_40
 
   # remove one of the assets in the strategy being tested
+  R <- ETFs_daily
   ind_rm <- which(colnames(R) == "SPY")
   R <- ETFs_daily[, -ind_rm]
 

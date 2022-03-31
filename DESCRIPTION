@@ -1,11 +1,10 @@
 Package: AssetAllocation
 Type: Package
-Title: Backtest simple asset allocation strategies
+Title: Backtesting Simple Asset Allocation Strategies
 Version: 0.1.0
 Author: Alexandre Rubesam
 Maintainer: Alexandre Rubesam <alexandre.rubesam@gmail.com>
-Description: This package allows users to test pre-loaded or customized asset allocation strategies. 
-    Users can rely on their own data, or have the package automatically download data from Yahoo Finance. 
+Description: Easy and quick testing of customized asset allocation strategies.  Users can rely on their own data, or have the package automatically download data from Yahoo Finance. 
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

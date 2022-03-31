@@ -4,7 +4,7 @@ daily_ret_calc <- function(w, R){
 
   # some dimension checks
   if (length(w) != ncol(R)){
-    error('Number of elements of w should match the number of columns in R')
+    stop('Number of elements of w should match the number of columns in R')
   }
 
   n_assets <- ncol(R)

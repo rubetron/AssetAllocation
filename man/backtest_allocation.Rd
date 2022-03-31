@@ -66,7 +66,8 @@ bt_us_60_40$table_performance
 
 ## Example 2: creating and backtesting an asset allocation from scratch
 
-# create a strategy that invests equally in momentum (MTUM), value (VLUE), low volatility (USMV) and quality (QUAL) ETFs.
+# create a strategy that invests equally in momentum (MTUM), value (VLUE),
+# low volatility (USMV) and quality (QUAL) ETFs.
 
 factor_strat  <- list(name = "EW Factors",
                       tickers = c("MTUM", "VLUE", "USMV", "QUAL"),

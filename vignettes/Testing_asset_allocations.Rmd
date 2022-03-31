@@ -1,5 +1,5 @@
 ---
-title: "Testing_asset_allocations"
+title: "Testing Asset Allocation Strategies"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Testing_asset_allocations}

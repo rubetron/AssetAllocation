@@ -17,7 +17,7 @@ get_return_data_from_tickers <- function(tickers, starting_date = "2007-01-01"){
   returns <- CalculateReturns(prices)
 
   # format as date
-  index(returns) <- as.Date(index(returns))
+  zoo::index(returns) <- as.Date(zoo::index(returns))
 
   return(returns)
 }
