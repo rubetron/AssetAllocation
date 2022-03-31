@@ -8,7 +8,7 @@ get_return_data_from_tickers <- function(tickers, starting_date = "2007-01-01"){
 
   # align all prices into one xts object
   prices <- xts()
-  for (i in 1:length(tickers)){
+  for (i in seq(from = 1, to = length(tickers))){
     prices  <- merge.xts(prices, get(tickers[i])[,6])
   }
   colnames(prices) <- tickers

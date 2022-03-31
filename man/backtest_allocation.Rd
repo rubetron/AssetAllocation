@@ -2,7 +2,6 @@
 \alias{backtest_allocation}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{backtest_allocation
-%%  ~~function to do ... ~~
 }
 \description{
 This function computes a backtest of a given portfolio allocation rule.
@@ -28,21 +27,12 @@ A list with the following elements:
 \item{rebalance_weights}{Vector of rebalancing dates}
 
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Alexandre Rubesam
-}
-\note{
-%%  ~~further notes~~
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 
 ## Example 1: backtesting one of the asset allocations in the package
@@ -50,15 +40,6 @@ us_60_40 <- basic_asset_alloc$us_60_40
 
 # test using the data set provided in the package
 bt_us_60_40 <- backtest_allocation(us_60_40, ETFs_daily)
-
-# plot returns
-library(PerformanceAnalytics)
-chart.CumReturns(bt_us_60_40$returns,
-                 main = paste0("Backtest of the ",
-                               bt_us_60_40$strat$name,
-                               " portfolio"),
-                 ylab = "Cumulative returns"
-)
 
 # show table with performance metrics
 bt_us_60_40$table_performance
@@ -82,25 +63,6 @@ returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers, starting_date
 bt_factor_strat <- backtest_allocation(factor_strat,
                                        returns_ETFs)
 
-# plot returns
-library(PerformanceAnalytics)
-chart.CumReturns(bt_factor_strat$returns,
-                 main = paste0("Cumulative returns of the ",
-                               bt_factor_strat$strat$name,
-                               " portfolio"),
-                 ylab = "Cumulative returns"
-)
-
 # show table with performance metrics
 bt_factor_strat$table_performance
-
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

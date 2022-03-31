@@ -22,21 +22,11 @@ The function compares the prices on the rebalancing date with their moving avera
 \value{
 A vector of weights after applying the Ivy portfolio rule.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Alexandre Rubesam
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
 
 # weights for 5 assets
@@ -56,12 +46,3 @@ set.seed(12345)
 
 # Ivy set the weight of asset 4 to zero since the price is below the moving average
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.

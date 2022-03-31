@@ -19,10 +19,10 @@ library(PerformanceAnalytics)
 names(basic_asset_alloc)
 ```
 
-Each allocation is represented as a list with fields describing the name of the strategy, the tickers used, the desired weights, the rebalancing frequency, and the rebalancing function (which for the time being should always be set to "identity". For example, Ray Dalio's Permanent Portfolio strategy is defined as follows:
+Each allocation is represented as a list with fields describing the name of the strategy, the tickers used, the desired weights, the rebalancing frequency, and the rebalancing function (which for the time being should always be set to "identity". For example, Ray Dalio's All Weather Portfolio strategy is defined as follows:
 
 ```{r}
-basic_asset_alloc$permanent
+basic_asset_alloc$all_weather
 ```
 
 The package comes with returns data to test the 16 strategies in `basic_asset_alloc`. The returns are in the `ETFs_daily` data set. Type `?ETFs_daily` for details.

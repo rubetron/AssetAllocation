@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of AssetAllocation is to perform backtesting of asset allocation strategies. The main functions that the user interacts with is backtest_allocation().  
+The goal of AssetAllocation is to perform backtesting of customizable asset allocation strategies. The main functions that the user interacts with is backtest_allocation().  
 
 ## Installation
 

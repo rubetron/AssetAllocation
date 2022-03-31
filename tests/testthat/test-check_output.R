@@ -13,7 +13,7 @@ test_that("daily_ret_calc() returns a vector with the correct size", {
 })
 
 # Test that daily_ret_calc() stops in case of wrong dimensions
-test_that("daily_ret_calc() stops if length of w does not match number of columns of R", {
+test_that("daily_ret_calc() stops if length(w) != ncol(R)", {
   # generate some random data
   set.seed(12345)
   R <- matrix(rnorm(21*10, 0.01, 0.025), nrow = 21, ncol = 10)
@@ -43,12 +43,16 @@ test_that("backtest_allocation() returns a list with correct fields", {
 
   output_names <- names(output)
 
-  expected <- c("strat", "returns", "table_performance", "rebalance_dates", "rebalance_weights")
+  expected <- c("strat",
+                "returns",
+                "table_performance",
+                "rebalance_dates",
+                "rebalance_weights")
   expect_named(output, expected)
 })
 
 # Test that function backtest_allocation produces error if risk-free is of wrong dimension +
-test_that("backtest_allocation() produces error if risk-free is of wrong (higher) dimension", {
+test_that("backtest_allocation() stops if risk-free is of larger dimension", {
   ## Example 1: backtesting one of the asset allocations in the package
   us_60_40 <- basic_asset_alloc$us_60_40
 
@@ -59,7 +63,7 @@ test_that("backtest_allocation() produces error if risk-free is of wrong (higher
 })
 
 # Test that function backtest_allocation produces error if risk-free is of wrong dimension -
-test_that("backtest_allocation() produces error if risk-free is of wrong (lower) dimension", {
+test_that("backtest_allocation() stops if risk-free is of lower dimension", {
   ## Example 1: backtesting one of the asset allocations in the package
   us_60_40 <- basic_asset_alloc$us_60_40
 

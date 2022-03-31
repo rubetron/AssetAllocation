@@ -32,15 +32,6 @@ List of 16 lists, each representing an asset allocation strategy with the follow
   ..$ rebalance_frequency: chr (default is "month")
   ..$ portfolio_rule_fn  : chr (default is "identity")
 }
-\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-}
-\source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
-}
-\references{
-%%  ~~ possibly secondary sources and usages ~~
-}
 \examples{
 data(basic_asset_alloc)
 ## maybe str(basic_asset_alloc) ; plot(basic_asset_alloc) ...

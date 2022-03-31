@@ -17,5 +17,6 @@ daily_ret_calc <- function(w, R){
   PortMatrix[2:nrow(PortMatrix), 1:n_assets] <- 1 + R
   PortMatrix <- apply(PortMatrix, 2, cumprod)
   port_notional <- rowSums(PortMatrix[, 1:n_assets])
-  return(port_notional[2:length(port_notional)]/port_notional[1:(length(port_notional) - 1)] - 1)
+  return(port_notional[2:length(port_notional)]/
+           port_notional[1:(length(port_notional) - 1)] - 1)
 }

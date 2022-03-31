@@ -9,7 +9,7 @@ backtest_allocation <- function(strat, R, riskfree_returns = 0){
   rf_len <- length(riskfree_returns)
   if (rf_len > 1){
     if (rf_len != nrow(R)){
-      stop("riskfree_returns must be the same length as the number of rows in R.")
+      stop("riskfree_returns must be the same length nrows(R).")
     }
   }
 
@@ -40,7 +40,7 @@ backtest_allocation <- function(strat, R, riskfree_returns = 0){
   weights <- xts(matrix(0, length(rebal_dates), n_assets),
                  order.by = rebal_dates)
 
-  for (i_date in 1:length(rebal_dates)){
+  for (i_date in seq(from = 1, to = length(rebal_dates))){
     switch(strat$portfolio_rule_fn,
            identity = {weights[i_date, ] <- strat$default_weights}
     )
@@ -50,10 +50,12 @@ backtest_allocation <- function(strat, R, riskfree_returns = 0){
   strat_returns <- xts(rep(NA, length(dates)), order.by = dates)
   colnames(strat_returns) <- make.names(strat$name)
 
-  for (i_date in 1:(length(rebal_dates)-1)){
+  for (i_date in seq(from = 1, to = length(rebal_dates)-1)){
     # find dates between this and the next rebalance date
-    dates_between <- dates[dates > rebal_dates[i_date] & dates <= rebal_dates[i_date+1]]
-    strat_returns[dates_between] <- daily_ret_calc(weights[i_date], returns_strat[dates_between,])
+    dates_between <- dates[dates > rebal_dates[i_date] &
+                           dates <= rebal_dates[i_date+1]]
+    strat_returns[dates_between] <- daily_ret_calc(weights[i_date],
+                                                   returns_strat[dates_between,])
   }
 
   # calculate some statistics

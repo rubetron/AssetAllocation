@@ -24,20 +24,8 @@ The function retrieves data from Yahoo Finance using the getSymbols function fro
 \value{
 An xts return matrix with the daily returns calculated from the adjusted prices. The column names correspond to the tickers.
 }
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Alexandre Rubesam
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 ## build a return matrix for the following exchange-traded-funds: MTUM, VLUE, USMV, and QUAL.

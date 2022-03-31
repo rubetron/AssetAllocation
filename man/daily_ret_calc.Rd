@@ -19,20 +19,8 @@ daily_ret_calc(w, R)
 The function compounds each position using the daily returns to calculate a portfolio value. The return is calculated as the simple return on the portfolio value.
 }
 \value{Returns a vector of numeric type whose number of elements equals the number of rows in R.}
-\references{
-%% ~put references to the literature/web site here ~
-}
 \author{
 Alexandre Rubesam
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 # tickers for the United States 60/40 allocation:
@@ -45,12 +33,3 @@ Alexandre Rubesam
 # calculate daily returns
 (daily_ret_calc(strat$default_weights, ret_month))
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
-% \keyword{ ~kwd1 }
-% \keyword{ ~kwd2 }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
