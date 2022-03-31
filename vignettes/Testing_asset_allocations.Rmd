@@ -1,0 +1,103 @@
+---
+title: "Testing_asset_allocations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Testing_asset_allocations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(fig.width=6, fig.height=4) 
+```
+
+This vignette illustrates some ways to use the `AssetAllocation` package to backtest simple asset allocations. Example 1 shows how to backtest one of the pre-loaded asset allocations in the `basic_asset_alloc` object. The available allocations are these:
+
+```{r message=FALSE, warning=FALSE}
+library(AssetAllocation)
+library(PerformanceAnalytics)
+names(basic_asset_alloc)
+```
+
+Each allocation is represented as a list with fields describing the name of the strategy, the tickers used, the desired weights, the rebalancing frequency, and the rebalancing function (which for the time being should always be set to "identity". For example, Ray Dalio's Permanent Portfolio strategy is defined as follows:
+
+```{r}
+basic_asset_alloc$permanent
+```
+
+The package comes with returns data to test the 16 strategies in `basic_asset_alloc`. The returns are in the `ETFs_daily` data set. Type `?ETFs_daily` for details.
+
+# Example 1: testing a pre-loaded allocation
+
+In this first example, we use the pre-loaded returns matrix to backtest the Permanent Portfolio allocation. We then plot the cumulative returns.
+
+```{r}
+## Example 1: backtesting one of the asset allocations in the package
+strat_permanent <- basic_asset_alloc$permanent
+
+# test using the data set provided in the package
+bt_strat_permanent <- backtest_allocation(strat_permanent, ETFs_daily)
+
+# plot cumulative returns
+chart.CumReturns(bt_strat_permanent$returns,
+                 main = paste0("Cumulative returns of the ",
+                               bt_strat_permanent$strat$name,
+                               " portfolio"),
+                 ylab = "Cumulative returns"
+)
+
+# table with performance metrics
+bt_strat_permanent$table_performance
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+
+```
+
+# Example 2: creating and testing a custom allocation
+
+Here we create a custom strategy from scratch. The strategy invests equally in momentum (MTUM), value (VLUE), low volatility (USMV) and quality (QUAL) ETFs.
+
+We first set up this custom strategy as follows:
+
+```{r}
+factor_strat  <- list(name = "EW Factors",
+                      tickers = c("MTUM", "VLUE", "USMV", "QUAL"),
+                      default_weights = c(0.25, 0.25, 0.25, 0.25),
+                      rebalance_frequency = "month",
+                      portfolio_rule_fn = "identity")
+```
+
+Next, we can automatically download data and create a returns matrix using the `get_return_data_from_tickers` function:
+
+```{r}
+returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers,
+                                             starting_date = "2013-08-01")
+```
+
+Finally, we backtest the strategy and show the results:
+
+```{r}
+# backtest the strategy
+bt_factor_strat <- backtest_allocation(factor_strat,
+                                       returns_ETFs)
+
+# plot returns
+library(PerformanceAnalytics)
+chart.CumReturns(bt_factor_strat$returns,
+                 main = paste0("Cumulative returns of the ",
+                               bt_factor_strat$strat$name,
+                               " portfolio"),
+                 ylab = "Cumulative returns"
+)
+
+# table with performance metrics
+bt_factor_strat$table_performance
+```

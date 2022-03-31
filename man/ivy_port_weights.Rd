@@ -5,32 +5,28 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Calculates weights for Ivy portfolio allocation. This function is not intended to be directly executed by users of the package.
 }
 \usage{
-ivy_port_weights(x)
+ivy_port_weights(w_0, prices, prices_MA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{w_0}{Default weights for assets}
+  \item{prices}{Prices of assets on rebalancing date}
+  \item{prices_MA}{Moving averages of prices of assets on rebalancing date}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The function compares the prices on the rebalancing date with their moving averages. If the price of an asset is currently below its moving average, the allocation to the asset is set to zero.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A vector of weights after applying the Ivy portfolio rule.
 }
 \references{
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Alexandre Rubesam
 }
 \note{
 %%  ~~further notes~~
@@ -42,14 +38,23 @@ ivy_port_weights(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function (x)
-{
-  }
+# weights for 5 assets
+(w_0 <- rep(0.20, 5))
+
+# for reproducibility
+set.seed(12345)
+
+# some random prices
+(prices <- rnorm(5, 100, 15))
+
+# some random prices for the moving averages
+(prices_MA <- rnorm(5, 100, 15))
+
+# apply the Ivy portfolio rule
+(ivy_port_weights(w_0, prices, prices_MA))
+
+# Ivy set the weight of asset 4 to zero since the price is below the moving average
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):

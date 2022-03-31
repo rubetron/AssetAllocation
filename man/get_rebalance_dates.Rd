@@ -5,16 +5,16 @@
 %%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+This is a helper function used by backtest_allocation to determine the rebalancing dates based on user choices. This function is not intended to be directly executed by users of the package.
 }
 \usage{
-get_rebalance_dates(x)
+get_rebalance_dates(dates, reb_freq, k = 1)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{
-%%     ~~Describe \code{x} here~~
-}
+  \item{dates}{vector of dates corresponding to the returns matrix}
+  \item{reb_freq}{rebalance frequency with one of the following values: "days", "weeks", "months", "quarters", or "years"}
+  \item{k}{number of periods to skip. For example, if reb_freq is "months" and k = 2, the rebalancing will be done every 2 months.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -30,7 +30,7 @@ get_rebalance_dates(x)
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Alexandre Rubesam
 }
 \note{
 %%  ~~further notes~~
@@ -42,15 +42,17 @@ get_rebalance_dates(x)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+# get dates for the provided ETF data set
+dates <- zoo::index(ETFs_daily)
+(reb_dates_monthly <- get_rebalance_dates(dates, "months"))
 
-## The function is currently defined as
-function (x)
-{
-  }
+# rebalancing every 3 months
+(reb_dates_monthly <- get_rebalance_dates(dates, "months", k=3))
+
+# rebalancing weekly
+(reb_dates_monthly <- get_rebalance_dates(dates, "weeks"))
 }
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory (show via RShowDoc("KEYWORDS")):
 % \keyword{ ~kwd1 }
