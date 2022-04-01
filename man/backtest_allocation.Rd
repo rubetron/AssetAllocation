@@ -57,7 +57,7 @@ factor_strat  <- list(name = "EW Factors",
                       portfolio_rule_fn = "identity")
 
 # get data for tickers using getSymbols
-returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers, starting_date = "2013-08-01")
+returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers, starting_date = "2020-01-01")
 
 # backtest the strategy
 bt_factor_strat <- backtest_allocation(factor_strat,
