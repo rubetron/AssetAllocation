@@ -7,7 +7,7 @@
 <!-- badges: end -->
 
 The goal of AssetAllocation is to perform backtesting of customizable
-asset allocation strategies. The main functions that the user interacts
+asset allocation strategies. The main function that the user interacts
 with is backtest\_allocation().
 
 ## Installation
