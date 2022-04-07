@@ -13,7 +13,7 @@ backtest_allocation(strat, R, riskfree_returns = 0)
 \arguments{
   \item{strat}{A list describing an asset allocation rule with the fields: name, tickers, default_weights, rebalance_frequency, and portfolio_rule_fn. Refer to the data set basic_asset_alloc for examples}
   \item{R}{An xts matrix of returns. The names of the columns must match the tickers in strat.}
-  \item{riskfree_returns}{Either a scalar with annual risk-free rate of return, or an xts vector of daily returns for the risk-free asset. If absent, a risk-free rate of zero is applied to calculate performance metrics.}
+  \item{riskfree_returns}{Either a scalar with annual risk-free rate of returnin decimals, or an xts vector of daily returns for the risk-free asset. If absent, a risk-free rate of zero is applied to calculate performance metrics.}
 }
 \details{
 The function first determines the rebalancing dates based on strat$rebalance_frequency. Then, it cycles through intermediate dates and calculates daily returns based on the allocation.
