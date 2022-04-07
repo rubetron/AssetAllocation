@@ -1,5 +1,6 @@
 # create some lists representing asset allocation strategies
 
+# constant allocation rules
 us_60_40 <- list(name = "United States 60/40",
                  tickers = c("SPY", "IEF"),
                  default_weights = c(0.60, 0.40),
@@ -97,22 +98,32 @@ all_weather  <- list(name = "All Weather Portfolio",
                      rebalance_frequency = "month",
                      portfolio_rule_fn = "identity")
 
+# tactical allocation rules
+ivy  <- list(name = "Ivy",
+             tickers = c("VTI", "VEU", "VNQ", "AGG", "DBC"),
+             default_weights = c(0.20, 0.20, 0.20, 0.20, 0.20),
+             rebalance_frequency = "month",
+             portfolio_rule_fn = tactical_ivy)
 
-basic_asset_alloc <- list(us_60_40 = us_60_40,
-                          golden_butterfly = golden_butterfly,
-                          rob_arnott= rob_arnott,
-                          globalAA = globalAA,
-                          permanent = permanent,
-                          desert = desert,
-                          larry = larry,
-                          big_rocks = big_rocks,
-                          sandwich = sandwich,
-                          balanced_tax = balanced_tax,
-                          balanced = balanced,
-                          income_gr = income_gr,
-                          income_gr_tax = income_gr_tax,
-                          con_income = con_income,
-                          con_income_tax = con_income_tax,
-                          all_weather = all_weather)
 
-usethis::use_data(basic_asset_alloc)
+static <- list(us_60_40 = us_60_40,
+               golden_butterfly = golden_butterfly,
+               rob_arnott= rob_arnott,
+               globalAA = globalAA,
+               permanent = permanent,
+               desert = desert,
+               larry = larry,
+               big_rocks = big_rocks,
+               sandwich = sandwich,
+               balanced_tax = balanced_tax,
+               balanced = balanced,
+               income_gr = income_gr,
+               income_gr_tax = income_gr_tax,
+               con_income = con_income,
+               con_income_tax = con_income_tax,
+               all_weather = all_weather)
+tactical <- list(ivy)
+
+basic_asset_alloc <- list(static, tactical)
+
+usethis::use_data(basic_asset_alloc, overwrite = TRUE)

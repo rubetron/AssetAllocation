@@ -1,0 +1,25 @@
+Ticker,Fund Name,Geographic Focus,Fund Type
+SPY,SPDR S&P 500 ETF Trust,United States of America,Equity
+IEF,iShares 7-10 Year Treasury Bond ETF,United States of America,Bond
+SHY,iShares 1-3 Year Treasury Bond ETF,United States of America,Bond
+TLT,iShares 20+ Year Treasury Bond ETF,United States of America,Bond
+VTI,Vanguard Total Stock Market Index Fund;ETF,United States of America,Equity
+IWN,iShares Russell 2000 Value ETF,United States of America,Equity
+GLD,SPDR Gold Shares,Global,Commodity
+BND,Vanguard Total Bond Market Index Fund;ETF,United States of America,Bond
+BNDX,Vanguard Total International Bond Index Fund;ETF,Global Ex US,Bond
+LQD,iShares iBoxx $ Inv Grade Corporate Bond ETF,United States of America,Bond
+VEU,Vanguard FTSE All-World ex US Index Fund;ETF,Global Ex US,Equity
+VNQ,Vanguard Real Estate Index Fund;ETF,United States of America,Equity
+TIP,iShares TIPS Bond ETF,United States of America,Bond
+DBC,Invesco DB Commodity Index Tracking Fund,United States of America,Commodity
+EFA,iShares MSCI EAFE ETF,Global Ex US,Equity
+EEM,iShares MSCI Emerging Markets ETF,Global Emerging Markets,Equity
+BIL,SPDR Bloomberg 1-3 Month T-Bill ETF,United States of America,Bond
+DLS,WisdomTree International SmallCap Dividend Fund,Global Ex US,Equity
+AGG,iShares Core US Aggregate Bond ETF,United States of America,Bond
+IWD,iShares Russell 1000 Value ETF,United States of America,Equity
+IWM,iShares Russell 2000 ETF,United States of America,Equity
+EFV,iShares MSCI EAFE Value ETF,Global Ex US,Equity
+SCZ,iShares MSCI EAFE Small-Cap ETF,Global Ex US,Equity
+HYG,iShares iBoxx $ High Yield Corporate Bond ETF,United States of America,Bond

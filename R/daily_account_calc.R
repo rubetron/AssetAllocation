@@ -1,6 +1,6 @@
 # helper function to calculate compounded daily returns from initial allocation
 #' @export
-daily_ret_calc <- function(w, R){
+daily_account_calc <- function(w, R){
 
   # some dimension checks
   if (length(w) != ncol(R)){
@@ -8,7 +8,7 @@ daily_ret_calc <- function(w, R){
   }
 
   if (sum(w==0) == length(w)){
-    return(rep(0, nrow(R)))
+    return(rep(0, nrow(R) + 1))
   } else{
     n_assets <- ncol(R)
     n_periods <- nrow(R)
@@ -20,7 +20,6 @@ daily_ret_calc <- function(w, R){
     PortMatrix[2:nrow(PortMatrix), 1:n_assets] <- 1 + R
     PortMatrix <- apply(PortMatrix, 2, cumprod)
     port_notional <- rowSums(PortMatrix[, 1:n_assets])
-    return(port_notional[2:length(port_notional)]/
-             port_notional[1:(length(port_notional) - 1)] - 1)
+    return(port_notional)
   }
 }
