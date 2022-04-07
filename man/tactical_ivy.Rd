@@ -28,10 +28,7 @@ If the price of an asset is below its moving average, the corresponding
 allocation in \code{strat$default_weights} is set to zero.
 }
 \examples{
-ivy  <- list(name = "Ivy",
-             tickers = c("VTI", "VEU", "VNQ", "AGG", "DBC"),
-             default_weights = c(0.20, 0.20, 0.20, 0.20, 0.20),
-             rebalance_frequency = "month",
-             portfolio_rule_fn = tactical_ivy)
-tactical_ivy()
+ivy  <- asset_allocations$tactical$ivy
+reb_date <- as.Date("2022-03-31")
+tactical_ivy(ivy, reb_date, ETFs$Prices[, ivy$tickers], ETFs$Returns[, ivy$tickers])
 }

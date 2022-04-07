@@ -1,3 +1,22 @@
+#' Downloads prices in xts format from a list of tickers from Yahoo Finance (<https://finance.yahoo.com/>).
+#'
+#' \code{get_data_from_tickers} retrieves adjusted closing prices from Yahoo Finance
+#' for a set of tickers and returns the prices and returns.
+#'
+#' The function retrieves data from Yahoo Finance (<https://finance.yahoo.com/>)
+#' using the getSymbols function from the \code{quantmod} package. It calculates
+#' returns from adjusted prices. The ticker names must correspond to those found
+#' in Yahoo Finance.
+#'
+#' @param tickers A vector containing a tickers.
+#' @param starting_date A date on which the allocation rule is applied.
+#' @examples
+#' ## download data for the following exchange-traded-funds: MTUM, VLUE, USMV, and QUAL.
+#' factor_ETFs <- get_data_from_tickers(c("MTUM", "VLUE", "USMV", "QUAL"),
+#'                                      starting_date = "2020-01-01")
+#' @return An object of class \code{"List"} containing two objects of class
+#' \code{"xts"} with respectively the prices and returns of the assets,
+#' with column names corresponding to the tickers.
 #' @export
 #' @importFrom quantmod getSymbols
 #' @importFrom PerformanceAnalytics CalculateReturns

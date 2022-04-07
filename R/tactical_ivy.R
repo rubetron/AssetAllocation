@@ -11,12 +11,9 @@
 #' @param P An xts object with daily prices of the tickers in strat.
 #' @param R An xts object with daily returns of the tickers in strat.
 #' @examples
-#' ivy  <- list(name = "Ivy",
-#'              tickers = c("VTI", "VEU", "VNQ", "AGG", "DBC"),
-#'              default_weights = c(0.20, 0.20, 0.20, 0.20, 0.20),
-#'              rebalance_frequency = "month",
-#'              portfolio_rule_fn = tactical_ivy)
-#' tactical_ivy()
+#' ivy  <- asset_allocations$tactical$ivy
+#' reb_date <- as.Date("2022-03-31")
+#' tactical_ivy(ivy, reb_date, ETFs$Prices[, ivy$tickers], ETFs$Returns[, ivy$tickers])
 #' @return A numeric vector of weights after applying the rule.
 #' @export
 #' @import xts

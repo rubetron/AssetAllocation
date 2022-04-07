@@ -12,7 +12,7 @@ backtest_allocation <- function(strat, P, R, riskfree_returns = 0){
       stop("riskfree_returns must be the same length nrows(R).")
     }
   } else {
-    riskfree_returns <- xts(rep(riskfree_returns, nrow(R)),
+    riskfree_returns <- xts(rep(riskfree_returns/252, nrow(R)),
                             order.by = index(P))
   }
 
