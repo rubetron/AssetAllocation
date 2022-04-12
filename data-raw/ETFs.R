@@ -5,7 +5,7 @@ library(PerformanceAnalytics)
 ETFs_P <- data.table::fread(system.file("extdata",
                         "ETFs_Prices.csv",
                         package = "AssetAllocation"))
-ETFs_P$Date <- as.Date(ETFs_P$Date)
+ETFs_P$Date <- as.Date(ETFs_P$Date, format="%m/%d/%Y")
 
 ETFs_P <- as.xts(ETFs_P)
 
@@ -13,7 +13,7 @@ ETFs_P <- as.xts(ETFs_P)
 ETFs_R <- data.table::fread(system.file("extdata",
                                "ETFs_TotalReturnIndices.csv",
                                package = "AssetAllocation"))
-ETFs_R$Date <- as.Date(ETFs_R$Date)
+ETFs_R$Date <- as.Date(ETFs_R$Date, format="%m/%d/%Y")
 ETFs_R <- as.xts(ETFs_R)
 ETFs_R <- PerformanceAnalytics::CalculateReturns(ETFs_R)
 

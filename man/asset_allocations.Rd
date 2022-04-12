@@ -24,6 +24,8 @@ Basic static and tactical asset allocation strategies that work with the pre-loa
 - All Weather Portfolio
 The tactical asset allocations included are:
 - Ivy Portfolio
+- Robust Asset Allocation
+- Dual Momentum
 }
 \usage{data("asset_allocations")}
 \format{

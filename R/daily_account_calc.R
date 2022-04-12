@@ -1,4 +1,17 @@
-# helper function to calculate compounded daily returns from initial allocation
+#' Calculation of account value for backtesting asset allocation strategies
+#'
+#' \code{daily_account_calc} is a helper function used by
+#' \code{backtest_allocation} to calculate theoretical the theoretical account
+#' value given an initial allocation to assets. It is not intended to be called
+#' directly by the user.
+#'
+#' The function simulates the value of a theoretical account from the initial
+#' weights and the daily returns of a set of assets.
+#'
+#' @param w A vector of weights
+#' @param R An xts object with daily returns of the tickers in strat.
+#' @return A numeric vector with the daily value of the account.
+#'
 #' @export
 daily_account_calc <- function(w, R){
 

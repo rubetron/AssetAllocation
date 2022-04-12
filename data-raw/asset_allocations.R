@@ -105,6 +105,29 @@ ivy  <- list(name = "Ivy",
              rebalance_frequency = "month",
              portfolio_rule_fn = tactical_ivy)
 
+# RAA
+raa     <- list(name = "RAA Balanced",
+                tickers = c("MTUM", "IWD", "EFA", "EFV", "VNQ", "DBC", "IEF"),
+                default_weights = c(0.10, 0.10, 0.10, 0.10, 0.20, 0.20, 0.20),
+                rebalance_frequency = "month",
+                portfolio_rule_fn = tactical_RAA)
+
+dual_mo     <- list(name = "Antonacci's Dual Momo",
+                    tickers = c("SPY", "EFA",    # equity
+                                "HYG", "LQD",    # bonds
+                                "VNQ", "REM",    # real estate
+                                "GLD", "TLT"),   # "stress"
+                    asset_class = c("Equity", "Equity",
+                                    "Bond", "Bond",
+                                    "REIT", "REIT",
+                                    "Stress", "Stress"),
+                    default_weights = c(0.25, 0.25,
+                                        0.25, 0.25,
+                                        0.25, 0.25,
+                                        0.25, 0.25),
+                    rebalance_frequency = "month",
+                    portfolio_rule_fn = tactical_DualMomentum)
+
 static <- list(us_60_40 = us_60_40,
                golden_butterfly = golden_butterfly,
                rob_arnott= rob_arnott,
@@ -122,7 +145,9 @@ static <- list(us_60_40 = us_60_40,
                con_income_tax = con_income_tax,
                all_weather = all_weather)
 
-tactical <- list(ivy = ivy)
+tactical <- list(ivy = ivy,
+                 raa = raa,
+                 dual_mo = dual_mo)
 
 asset_allocations <- list(static = static,
                           tactical = tactical)

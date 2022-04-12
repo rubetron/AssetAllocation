@@ -10,7 +10,7 @@ BND,Vanguard Total Bond Market Index Fund;ETF,United States of America,Bond
 BNDX,Vanguard Total International Bond Index Fund;ETF,Global Ex US,Bond
 LQD,iShares iBoxx $ Inv Grade Corporate Bond ETF,United States of America,Bond
 VEU,Vanguard FTSE All-World ex US Index Fund;ETF,Global Ex US,Equity
-VNQ,Vanguard Real Estate Index Fund;ETF,United States of America,Equity
+VNQ,Vanguard Real Estate Index Fund;ETF,United States of America,REIT
 TIP,iShares TIPS Bond ETF,United States of America,Bond
 DBC,Invesco DB Commodity Index Tracking Fund,United States of America,Commodity
 EFA,iShares MSCI EAFE ETF,Global Ex US,Equity
@@ -23,3 +23,8 @@ IWM,iShares Russell 2000 ETF,United States of America,Equity
 EFV,iShares MSCI EAFE Value ETF,Global Ex US,Equity
 SCZ,iShares MSCI EAFE Small-Cap ETF,Global Ex US,Equity
 HYG,iShares iBoxx $ High Yield Corporate Bond ETF,United States of America,Bond
+MTUM,iShares MSCI USA Momentum Factor ETF,United States of America,Equity
+VLUE,iShares MSCI USA Value Factor ETF,United States of America,Equity
+QUAL,iShares MSCI USA Quality Factor ETF,United States of America,Equity
+USMV,iShares MSCI USA Min Vol Factor ETF,United States of America,Equity
+REM,iShares Mortgage Real Estate ETF,United States of America,REIT

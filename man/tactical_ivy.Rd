@@ -4,7 +4,7 @@
 \alias{tactical_ivy}
 \title{Returns allocations for the Ivy Portfolio on a given date}
 \usage{
-tactical_ivy(strat, reb_date, P, R)
+tactical_ivy(strat, reb_date, P, R, risk_free = NULL)
 }
 \arguments{
 \item{strat}{A list representing an asset allocation strategy.}
@@ -14,6 +14,8 @@ tactical_ivy(strat, reb_date, P, R)
 \item{P}{An xts object with daily prices of the tickers in strat.}
 
 \item{R}{An xts object with daily returns of the tickers in strat.}
+
+\item{risk_free}{Either an xts object with daily returns of the risk-free}
 }
 \value{
 A numeric vector of weights after applying the rule.

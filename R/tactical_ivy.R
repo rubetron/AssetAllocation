@@ -10,6 +10,7 @@
 #' @param reb_date A date on which the allocation rule is applied.
 #' @param P An xts object with daily prices of the tickers in strat.
 #' @param R An xts object with daily returns of the tickers in strat.
+#' @param risk_free Either an xts object with daily returns of the risk-free
 #' @examples
 #' ivy  <- asset_allocations$tactical$ivy
 #' reb_date <- as.Date("2022-03-31")
@@ -20,7 +21,7 @@
 #' @importFrom xts endpoints
 #' @importFrom zoo rollmean
 # Ivy portfolio allocation
-tactical_ivy <- function(strat, reb_date, P, R){
+tactical_ivy <- function(strat, reb_date, P, R, risk_free = NULL){
 
   # comparison will be made using dates until the reb_date
   # Ivy is supposed to be rebalanced monthly
