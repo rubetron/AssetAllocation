@@ -1,7 +1,7 @@
 Package: AssetAllocation
 Type: Package
 Title: Backtesting Simple Asset Allocation Strategies
-Version: 0.1.0
+Version: 1.0.0
 Author: Alexandre Rubesam
 Maintainer: Alexandre Rubesam <alexandre.rubesam@gmail.com>
 Description: Easy and quick testing of customizable asset allocation strategies.
