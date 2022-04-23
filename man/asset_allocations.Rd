@@ -5,27 +5,36 @@
 %%   ~~ data name/kind ... ~~
 }
 \description{
-Basic static and tactical asset allocation strategies that work with the pre-loaded data in the object \code{ETFs}. Each element is itself a list with the following fields: name, tickers, defaukt_weights, rebalance_frequency, portfolio_rule_fn. The static allocations included are:
-- United States 60/40 portfolio
-- Golden Butterfly portfolio
-- Rob Arnott Portfolio
-- Global Asset Allocation
-- Permanent Portfolio
-- Desert Portfolio
-- Larry Portfolio
-- Big Rocks Portfolio
-- Sandwich Portfolio
-- Balanced Tax Aware Portfolio
-- Balanced Portfolio
-- Income with Growth Portfolio
-- Income with Growth Tax Aware Portfolio
-- Conservative Income
-- Conservative Income Tax Aware
-- All Weather Portfolio
+Basic static and tactical asset allocation strategies that work with the pre-loaded data in the object \code{ETFs}. Each element is itself a list with the following fields: name, tickers, default_weights, rebalance_frequency, portfolio_rule_fn.
+
+The static allocations included are:
+\itemize{
+\item United States 60/40 portfolio
+\item Golden Butterfly portfolio
+\item Rob Arnott Portfolio
+\item Global Asset Allocation
+\item Permanent Portfolio
+\item Desert Portfolio
+\item Larry Portfolio
+\item Big Rocks Portfolio
+\item Sandwich Portfolio
+\item Balanced Tax Aware Portfolio
+\item Balanced Portfolio
+\item Income with Growth Portfolio
+\item Income with Growth Tax Aware Portfolio
+\item Conservative Income
+\item Conservative Income Tax Aware
+\item All Weather Portfolio
+}
+
 The tactical asset allocations included are:
-- Ivy Portfolio
-- Robust Asset Allocation
-- Dual Momentum
+\itemize{
+\item Ivy Portfolio
+\item Robust Asset Allocation
+\item Dual Momentum
+\item Adaptive Asset Allocation
+}
+
 }
 \usage{data("asset_allocations")}
 \format{

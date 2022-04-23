@@ -5,13 +5,17 @@
 #'
 #' The function first determines the rebalancing dates based
 #' on \code{strat$rebalance_frequency}. Then, it cycles through intermediate
-#' dates and calculates daily returns based on the allocation.
+#' dates and calculates daily returns based on the allocation. If the optional
+#' parameter \code{start_date} is provided, the backtest will start on that
+#' date. Otherwise, it will start from the date from which data on all assets
+#' becomes available.
 #'
 #' @param strat A list representing an asset allocation strategy.
 #' @param P An xts object with daily prices of the tickers in strat.
 #' @param R An xts object with daily returns of the tickers in strat.
 #' @param risk_free Either an xts object with daily returns of the risk-free
 #' asset, or a scalar numeric with the annual risk-free rate in decimals.
+#' @param start_date Optional starting date
 #'
 #' @examples
 #' # Example 1: backtesting one of the asset allocations in the package
@@ -34,7 +38,7 @@
 #'                       tickers = c("MTUM", "VLUE", "USMV", "QUAL"),
 #'                       default_weights = c(0.25, 0.25, 0.25, 0.25),
 #'                       rebalance_frequency = "month",
-#'                       portfolio_rule_fn = constant_weights)
+#'                       portfolio_rule_fn = "constant_weights")
 #'
 #' # get data for tickers using getSymbols
 #' factor_ETFs <- get_data_from_tickers(factor_strat$tickers,
@@ -58,7 +62,7 @@
 #' @importFrom PerformanceAnalytics table.AnnualizedReturns
 #' @importFrom PerformanceAnalytics table.DownsideRiskRatio
 #' @importFrom PerformanceAnalytics table.DownsideRisk
-backtest_allocation <- function(strat, P, R, risk_free = 0){
+backtest_allocation <- function(strat, P, R, risk_free = 0, start_date = NULL){
 
   # some checks
   rf_len <- length(risk_free)
@@ -111,6 +115,10 @@ backtest_allocation <- function(strat, P, R, risk_free = 0){
 
   rebal_dates <- get_rebalance_dates(dates, strat$rebalance_frequency)
 
+  if (!is.null(start_date)){
+    rebal_dates <- rebal_dates[rebal_dates >= start_date]
+  }
+
   # starting date
   R <- R[, strat$tickers]
   P <- P[, strat$tickers]
@@ -132,11 +140,8 @@ backtest_allocation <- function(strat, P, R, risk_free = 0){
 
   for (i_date in seq(from = 1, to = length(rebal_dates))){
     this_reb_date <- rebal_dates[i_date]
-    weights[i_date, ] <- strat$portfolio_rule_fn(strat,
-                                                 this_reb_date,
-                                                 P,
-                                                 R,
-                                                 risk_free)
+    weights[i_date, ] <- do.call(strat$portfolio_rule_fn,
+                                 list(strat, this_reb_date, P, R, risk_free))
   }
 
   # calculation of daily returns

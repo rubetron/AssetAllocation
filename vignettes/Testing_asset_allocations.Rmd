@@ -11,7 +11,7 @@ vignette: >
 knitr::opts_chunk$set(fig.width=6, fig.height=4) 
 ```
 
-This vignette illustrates some ways to use the `AssetAllocation` package to backtest simple asset allocations. Example 1 shows how to backtest one of the pre-loaded asset allocations in the `asset_alloc` object.
+This vignette illustrates some ways to use the `AssetAllocation` package to backtest simple asset allocations. Example 1 shows how to backtest one of the pre-loaded asset allocations in the `asset_allocations` object.
 
 The available static (i.e., constant weights) allocations are these:
 
@@ -33,7 +33,7 @@ Each allocation is represented as a list with fields describing the name of the 
 asset_allocations$static$all_weather
 ```
 
-The package comes with returns data to test all strategies in `asset_alloc` using ETFs. The returns are in the `ETFs` data set. Type `?ETFs` for details.
+The package comes with returns data to test all strategies in `asset_allocations` using ETFs. The returns are in the `ETFs` data set. Type `?ETFs` for details.
 
 # Example 1: testing a pre-loaded allocation
 
@@ -80,12 +80,12 @@ factor_strat  <- list(name = "EW Factors",
                       tickers = c("MTUM", "VLUE", "USMV", "QUAL"),
                       default_weights = c(0.25, 0.25, 0.25, 0.25),
                       rebalance_frequency = "month",
-                      portfolio_rule_fn = constant_weights)
+                      portfolio_rule_fn = "constant_weights")
 ```
 
 Next, we can automatically download data and create a returns matrix using the `get_return_data_from_tickers` function:
 
-```{r warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 factor_ETFs <- get_data_from_tickers(factor_strat$tickers,
                                       starting_date = "2013-08-01")
 
@@ -113,21 +113,24 @@ bt_factor_strat$table_performance
 
 # Example 3: Testing tactical asset allocation strategies
 
-In this example, we test and compare three tactical aaset allocation strategies: the Ivy Portfolio, the Robust Asset Allocation strategy, and the Dual Momentum strategy.
+In this example, we test and compare four tactical asset allocation strategies: the Ivy Portfolio, the Robust Asset Allocation strategy, and the Dual Momentum strategy.
 
 ```{r}
 # define strategies
 ivy <- asset_allocations$tactical$ivy
 raa <- asset_allocations$tactical$raa
 dual_mo <- asset_allocations$tactical$dual_mo
+aaa <- asset_allocations$tactical$aaa
 
 # run backtests
 bt_ivy <- backtest_allocation(ivy, ETFs$Prices,ETFs$Returns, ETFs$risk_free)
 bt_raa <- backtest_allocation(raa, ETFs$Prices,ETFs$Returns, ETFs$risk_free)
 bt_dual_mo <- backtest_allocation(dual_mo, ETFs$Prices,ETFs$Returns, ETFs$risk_free)
+bt_aaa <- backtest_allocation(aaa, ETFs$Prices,ETFs$Returns, ETFs$risk_free)
+
 
 # 
-ret_strats <- (merge.xts(bt_ivy$returns, bt_raa$returns, bt_dual_mo$returns))
+ret_strats <- (merge.xts(bt_ivy$returns, bt_raa$returns, bt_dual_mo$returns, bt_aaa$returns))
 
 # find index from which all strats are available
 min_ind <- which.max(!is.na(rowSums(ret_strats)))

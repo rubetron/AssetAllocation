@@ -4,7 +4,7 @@
 \alias{backtest_allocation}
 \title{Backtesting of asset allocation strategies}
 \usage{
-backtest_allocation(strat, P, R, risk_free = 0)
+backtest_allocation(strat, P, R, risk_free = 0, start_date = NULL)
 }
 \arguments{
 \item{strat}{A list representing an asset allocation strategy.}
@@ -15,6 +15,8 @@ backtest_allocation(strat, P, R, risk_free = 0)
 
 \item{risk_free}{Either an xts object with daily returns of the risk-free
 asset, or a scalar numeric with the annual risk-free rate in decimals.}
+
+\item{start_date}{Optional starting date}
 }
 \value{
 An object of class \code{"List"} with the following elements:
@@ -31,7 +33,10 @@ allocation rule.
 \details{
 The function first determines the rebalancing dates based
 on \code{strat$rebalance_frequency}. Then, it cycles through intermediate
-dates and calculates daily returns based on the allocation.
+dates and calculates daily returns based on the allocation. If the optional
+parameter \code{start_date} is provided, the backtest will start on that
+date. Otherwise, it will start from the date from which data on all assets
+becomes available.
 }
 \examples{
 # Example 1: backtesting one of the asset allocations in the package
