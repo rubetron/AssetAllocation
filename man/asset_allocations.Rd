@@ -38,7 +38,9 @@ The tactical asset allocations included are:
 }
 \usage{data("asset_allocations")}
 \format{
-Object of class \code{"List"} with two fields containing static and tactical sset allocations, respectively. Each asset allocation is represented by a list with the following fields:
+Object of class \code{"List"} with two fields containing static and tactical
+asset allocations, respectively. Each asset allocation is represented by a list
+with the following fields:
   ..$ name               : chr
   ..$ tickers            : chr
   ..$ default_weights    : num
