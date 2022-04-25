@@ -30,7 +30,7 @@
 #' @import xts
 #' @importFrom xts endpoints
 #' @importFrom PerformanceAnalytics Return.cumulative
-# raa portfolio allocation
+#' @importFrom stats cov
 tactical_AAA <- function(strat, reb_date, P, R, risk_free){
 
   # check that user supplied a specific window.
@@ -104,7 +104,7 @@ tactical_AAA <- function(strat, reb_date, P, R, risk_free){
 
 
     #cov_mat <- D %*% C %*% D
-    cov_mat <- cov(R[seq(from = nrow(R) - n_months_cov*21 + 1,
+    cov_mat <- stats::cov(R[seq(from = nrow(R) - n_months_cov*21 + 1,
                          to = nrow(R)), sel_assets])
 
     # apply minimum variance optimization

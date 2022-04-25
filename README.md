@@ -1,19 +1,16 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # AssetAllocation
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of AssetAllocation is to perform backtesting of customizable
-asset allocation strategies. The main function that the user interacts
-with is backtest\_allocation().
+The goal of AssetAllocation is to perform backtesting of customizable asset allocation strategies. The main function that the user interacts with is backtest_allocation().
 
 ## Installation
 
-You can install the development version of AssetAllocation from
-[GitHub](https://github.com/) with:
+You can install the development version of AssetAllocation from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -22,7 +19,7 @@ devtools::install_github("rubetron/AssetAllocation")
 
 ## Example
 
-Simple example using preloaded strategy:
+Simple example using pre-loaded strategy (see the vignette for other examples):
 
 ``` r
 library(AssetAllocation)
@@ -30,16 +27,18 @@ library(AssetAllocation)
 #>   method            from
 #>   as.zoo.data.frame zoo
 ## Example 1: backtesting one of the asset allocations in the package
-us_60_40 <- basic_asset_alloc$us_60_40
+us_60_40 <- asset_allocations$static$us_60_40
 
 # test using the data set provided in the package
-bt_us_60_40 <- backtest_allocation(us_60_40, ETFs_daily)
+bt_us_60_40 <- backtest_allocation(us_60_40,
+                                   ETFs$Prices,
+                                   ETFs$Returns,
+                                   ETFs$risk_free)
 
 # plot returns
 library(PerformanceAnalytics)
 #> Loading required package: xts
 #> Loading required package: zoo
-#> Warning: package 'zoo' was built under R version 4.0.5
 #> 
 #> Attaching package: 'zoo'
 #> The following objects are masked from 'package:base':
@@ -58,51 +57,51 @@ chart.CumReturns(bt_us_60_40$returns,
 )
 ```
 
-<img src="man/figures/README-example1-1.png" width="100%" />
+<img src="man/figures/README-example1-1.png" width="100%"/>
 
 ``` r
 # show table with performance metrics
 bt_us_60_40$table_performance
 #>                               United.States.60.40
-#> Annualized Return                          0.0813
-#> Annualized Std Dev                         0.1107
-#> Annualized Sharpe (Rf=0%)                  0.7349
-#> daily downside risk                        0.0049
-#> Annualised downside risk                   0.0783
-#> Downside potential                         0.0021
-#> Omega                                      1.1602
-#> Sortino ratio                              0.0679
-#> Upside potential                           0.0024
-#> Upside potential ratio                     0.5862
-#> Omega-sharpe ratio                         0.1602
-#> Semi Deviation                             0.0051
-#> Gain Deviation                             0.0050
-#> Loss Deviation                             0.0057
-#> Downside Deviation (MAR=210%)              0.0103
-#> Downside Deviation (Rf=0%)                 0.0049
-#> Downside Deviation (0%)                    0.0049
-#> Maximum Drawdown                           0.3258
-#> Historical VaR (95%)                      -0.0105
-#> Historical ES (95%)                       -0.0170
-#> Modified VaR (95%)                        -0.0097
-#> Modified ES (95%)                         -0.0117
+#> Annualized Return                          0.0803
+#> Annualized Std Dev                         0.1013
+#> Annualized Sharpe (Rf=1.18%)               0.6669
+#> daily downside risk                        0.0045
+#> Annualised downside risk                   0.0718
+#> Downside potential                         0.0019
+#> Omega                                      1.1466
+#> Sortino ratio                              0.0618
+#> Upside potential                           0.0022
+#> Upside potential ratio                     0.6175
+#> Omega-sharpe ratio                         0.1466
+#> Semi Deviation                             0.0046
+#> Gain Deviation                             0.0046
+#> Loss Deviation                             0.0053
+#> Downside Deviation (MAR=210%)              0.0100
+#> Downside Deviation (Rf=1.18%)              0.0045
+#> Downside Deviation (0%)                    0.0045
+#> Maximum Drawdown                           0.3260
+#> Historical VaR (95%)                      -0.0093
+#> Historical ES (95%)                       -0.0155
+#> Modified VaR (95%)                        -0.0086
+#> Modified ES (95%)                         -0.0086
 ```
 
-Another example creating a strategy from scratch, retrieving data from
-Yahoo Finance, and backtesting:
+Another example creating a strategy from scratch, retrieving data from Yahoo Finance, and backtesting:
 
 ``` r
 library(AssetAllocation)
 # create a strategy that invests equally in momentum (MTUM), value (VLUE), low volatility (USMV) and quality (QUAL) ETFs.
 
-factor_strat  <- list(name = "EW Factors",
+factors_EW  <- list(name = "EW Factors",
                       tickers = c("MTUM", "VLUE", "USMV", "QUAL"),
                       default_weights = c(0.25, 0.25, 0.25, 0.25),
                       rebalance_frequency = "month",
-                      portfolio_rule_fn = "identity")
+                      portfolio_rule_fn = "constant_weights")
 
 # get data for tickers using getSymbols
-returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers, starting_date = "2013-08-01")
+factor_ETFs_data <- get_data_from_tickers(factors_EW$tickers,
+                                      starting_date = "2013-08-01")
 #> 'getSymbols' currently uses auto.assign=TRUE by default, but will
 #> use auto.assign=FALSE in 0.5-0. You will still be able to use
 #> 'loadSymbols' to automatically load data. getOption("getSymbols.env")
@@ -111,47 +110,41 @@ returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers, starting_date
 #> 
 #> This message is shown once per session and may be disabled by setting 
 #> options("getSymbols.warning4.0"=FALSE). See ?getSymbols for details.
-
 # backtest the strategy
-bt_factor_strat <- backtest_allocation(factor_strat,
-                                       returns_ETFs)
+bt_factors_EW <- backtest_allocation(factors_EW,factor_ETFs_data$P, factor_ETFs_data$R)
 
 # plot returns
-library(PerformanceAnalytics)
-chart.CumReturns(bt_factor_strat$returns,
-                 main = paste0("Cumulative returns of the ",
-                               bt_factor_strat$strat$name,
-                               " portfolio"),
-                 ylab = "Cumulative returns"
-)
+charts.PerformanceSummary(bt_factors_EW$returns,
+                          main = bt_factors_EW$strat$name,
+                               )
 ```
 
-<img src="man/figures/README-example2-1.png" width="100%" />
+<img src="man/figures/README-example2-1.png" width="100%"/>
 
 ``` r
-# show table with performance metrics
-bt_factor_strat$table_performance
+# table with performance metrics
+bt_factors_EW$table_performance
 #>                               EW.Factors
-#> Annualized Return                 0.1380
-#> Annualized Std Dev                0.1659
-#> Annualized Sharpe (Rf=0%)         0.8322
-#> daily downside risk               0.0075
-#> Annualised downside risk          0.1191
-#> Downside potential                0.0030
-#> Omega                             1.1894
-#> Sortino ratio                     0.0757
-#> Upside potential                  0.0036
-#> Upside potential ratio            0.5628
-#> Omega-sharpe ratio                0.1894
-#> Semi Deviation                    0.0077
-#> Gain Deviation                    0.0074
-#> Loss Deviation                    0.0090
-#> Downside Deviation (MAR=210%)     0.0122
-#> Downside Deviation (Rf=0%)        0.0075
-#> Downside Deviation (0%)           0.0075
+#> Annualized Return                 0.1233
+#> Annualized Std Dev                0.1731
+#> Annualized Sharpe (Rf=0%)         0.7125
+#> daily downside risk               0.0078
+#> Annualised downside risk          0.1246
+#> Downside potential                0.0032
+#> Omega                             1.1652
+#> Sortino ratio                     0.0664
+#> Upside potential                  0.0037
+#> Upside potential ratio            0.5665
+#> Omega-sharpe ratio                0.1652
+#> Semi Deviation                    0.0081
+#> Gain Deviation                    0.0077
+#> Loss Deviation                    0.0094
+#> Downside Deviation (MAR=210%)     0.0125
+#> Downside Deviation (Rf=0%)        0.0078
+#> Downside Deviation (0%)           0.0078
 #> Maximum Drawdown                  0.3499
-#> Historical VaR (95%)             -0.0150
-#> Historical ES (95%)              -0.0256
-#> Modified VaR (95%)               -0.0142
-#> Modified ES (95%)                -0.0142
+#> Historical VaR (95%)             -0.0161
+#> Historical ES (95%)              -0.0266
+#> Modified VaR (95%)               -0.0151
+#> Modified ES (95%)                -0.0168
 ```

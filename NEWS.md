@@ -6,7 +6,7 @@
 
 -   The `backtest_allocation` function now can take an optional input `start_date` in date format. If it is provided, the backtest starts from that date. Otherwise, it starts from the date from which data on all assets becomes available.
 
--   Pre-loaded data is now in a list called `ETFs`. Type `?ETFs` to see details and `ETFs$Description` to see more information about the assets.
+-   Pre-loaded data is now in a list called `ETFs`, which has replaced the previous object `ETFs_daily`. Type `?ETFs` to see details and `ETFs$Description` to see more information about the assets.
 
 -   Changed logic to calculate portfolio returns. The previous function `daily_ret_calc` has been replaced by the function `daily_account_cal`.
 
@@ -22,7 +22,7 @@
 
     -   Dual Momentum (rebalance function: `tactical_DualMomentum)`
 
-    -   Adaptive Asset Allocation (rebalance function: tactical_AAA)
+    -   Adaptive Asset Allocation (rebalance function: `tactical_AAA`)
 
 -   Added generic functions to calculate some portfolios that rely on optimization:
 

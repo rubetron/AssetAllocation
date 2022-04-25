@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 # AssetAllocation
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of AssetAllocation is to perform backtesting of customizable asset allocation strategies. The main function that the user interacts with is backtest_allocation().  
+The goal of AssetAllocation is to perform backtesting of customizable asset allocation strategies. The main function that the user interacts with is backtest_allocation().
 
 ## Installation
 
@@ -31,15 +32,18 @@ devtools::install_github("rubetron/AssetAllocation")
 
 ## Example
 
-Simple example using preloaded strategy:
+Simple example using pre-loaded strategy (see the vignette for other examples):
 
 ```{r example1}
 library(AssetAllocation)
 ## Example 1: backtesting one of the asset allocations in the package
-us_60_40 <- basic_asset_alloc$us_60_40
+us_60_40 <- asset_allocations$static$us_60_40
 
 # test using the data set provided in the package
-bt_us_60_40 <- backtest_allocation(us_60_40, ETFs_daily)
+bt_us_60_40 <- backtest_allocation(us_60_40,
+                                   ETFs$Prices,
+                                   ETFs$Returns,
+                                   ETFs$risk_free)
 
 # plot returns
 library(PerformanceAnalytics)
@@ -56,35 +60,29 @@ bt_us_60_40$table_performance
 
 ```
 
+Another example creating a strategy from scratch, retrieving data from Yahoo Finance, and backtesting:
 
-Another example creating a strategy from scratch, retrieving data from Yahoo Finance, and backtesting: 
 ```{r example2}
 library(AssetAllocation)
 # create a strategy that invests equally in momentum (MTUM), value (VLUE), low volatility (USMV) and quality (QUAL) ETFs.
 
-factor_strat  <- list(name = "EW Factors",
+factors_EW  <- list(name = "EW Factors",
                       tickers = c("MTUM", "VLUE", "USMV", "QUAL"),
                       default_weights = c(0.25, 0.25, 0.25, 0.25),
                       rebalance_frequency = "month",
-                      portfolio_rule_fn = "identity")
+                      portfolio_rule_fn = "constant_weights")
 
 # get data for tickers using getSymbols
-returns_ETFs <- get_return_data_from_tickers(factor_strat$tickers, starting_date = "2013-08-01")
-
+factor_ETFs_data <- get_data_from_tickers(factors_EW$tickers,
+                                      starting_date = "2013-08-01")
 # backtest the strategy
-bt_factor_strat <- backtest_allocation(factor_strat,
-                                       returns_ETFs)
+bt_factors_EW <- backtest_allocation(factors_EW,factor_ETFs_data$P, factor_ETFs_data$R)
 
 # plot returns
-library(PerformanceAnalytics)
-chart.CumReturns(bt_factor_strat$returns,
-                 main = paste0("Cumulative returns of the ",
-                               bt_factor_strat$strat$name,
-                               " portfolio"),
-                 ylab = "Cumulative returns"
-)
+charts.PerformanceSummary(bt_factors_EW$returns,
+                          main = bt_factors_EW$strat$name,
+                               )
 
-# show table with performance metrics
-bt_factor_strat$table_performance
+# table with performance metrics
+bt_factors_EW$table_performance
 ```
-

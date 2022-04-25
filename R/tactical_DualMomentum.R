@@ -24,19 +24,18 @@
 #' asset, or a scalar numeric with the annual risk-free rate in decimals.
 #'
 #' @examples
-#' raa  <- asset_allocations$tactical$raa
+#' dual_mom  <- asset_allocations$tactical$dual_mom
 #' reb_date <- as.Date("2022-03-31")
-#' tactical_DualMomentum(raa,
+#' tactical_DualMomentum(dual_mom,
 #'              reb_date,
-#'              ETFs$Prices[, raa$tickers],
-#'              ETFs$Returns[, raa$tickers],
+#'              ETFs$Prices[, dual_mom$tickers],
+#'              ETFs$Returns[, dual_mom$tickers],
 #'              ETFs$risk_free)
 #' @return A numeric vector of weights after applying the rule.
 #' @export
 #' @import xts
 #' @importFrom xts endpoints
 #' @importFrom PerformanceAnalytics Return.cumulative
-# raa portfolio allocation
 tactical_DualMomentum <- function(strat, reb_date, P, R, risk_free){
 
   # check that user supplied a specific window.

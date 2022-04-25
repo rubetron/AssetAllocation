@@ -4,7 +4,7 @@
 \alias{risk_parity}
 \title{Returns risk parity weights on a given date}
 \usage{
-risk_parity(strat, reb_date, P, R)
+risk_parity(strat, reb_date, P, R, risk_free = NULL)
 }
 \arguments{
 \item{strat}{A list representing an asset allocation strategy.}
@@ -14,6 +14,9 @@ risk_parity(strat, reb_date, P, R)
 \item{P}{An xts object with daily prices of the tickers in strat.}
 
 \item{R}{An xts object with daily returns of the tickers in strat.}
+
+\item{risk_free}{Either an xts object with daily returns of the risk-free
+asset, or a scalar numeric with the annual risk-free rate in decimals.}
 }
 \value{
 A numeric vector of weights after applying the rule.

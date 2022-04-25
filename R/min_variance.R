@@ -10,6 +10,9 @@
 #' @param reb_date A date on which the allocation rule is applied.
 #' @param P An xts object with daily prices of the tickers in strat.
 #' @param R An xts object with daily returns of the tickers in strat.
+#' @param risk_free Either an xts object with daily returns of the risk-free
+#' asset, or a scalar numeric with the annual risk-free rate in decimals.
+#'
 #' @examples
 #' ivy  <- asset_allocations$tactical$ivy
 #' reb_date <- as.Date("2022-03-31")

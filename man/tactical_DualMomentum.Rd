@@ -40,11 +40,11 @@ Any amounts not allocated to risky assets are allocated to the risk-free
 asset as implemented in the \code{backtest_allocation} function.
 }
 \examples{
-raa  <- asset_allocations$tactical$raa
+dual_mom  <- asset_allocations$tactical$dual_mom
 reb_date <- as.Date("2022-03-31")
-tactical_DualMomentum(raa,
+tactical_DualMomentum(dual_mom,
              reb_date,
-             ETFs$Prices[, raa$tickers],
-             ETFs$Returns[, raa$tickers],
+             ETFs$Prices[, dual_mom$tickers],
+             ETFs$Returns[, dual_mom$tickers],
              ETFs$risk_free)
 }

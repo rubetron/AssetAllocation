@@ -10,6 +10,8 @@
 #' @param reb_date A date on which the allocation rule is applied.
 #' @param P An xts object with daily prices of the tickers in strat.
 #' @param R An xts object with daily returns of the tickers in strat.
+#' @param risk_free Either an xts object with daily returns of the risk-free
+#' asset, or a scalar numeric with the annual risk-free rate in decimals.
 #' @examples
 #' ivy  <- asset_allocations$tactical$ivy
 #' reb_date <- as.Date("2022-03-31")
@@ -19,9 +21,8 @@
 #' @importFrom xts endpoints
 #' @importFrom zoo rollmean
 #' @importFrom RiskPortfolios covEstimation
-#' @importFrom nloptr nloptr
-# Ivy portfolio allocation
-risk_parity <- function(strat, reb_date, P, R){
+#' @importFrom riskParityPortfolio riskParityPortfolio
+risk_parity <- function(strat, reb_date, P, R, risk_free = NULL){
 
   # check that user supplied a specific window for cov estimation
   # if not, use the default 2 years (2*252 days)
@@ -71,25 +72,8 @@ risk_parity <- function(strat, reb_date, P, R){
                                             lambda = 0.98851))
 
     # risk parity optimization
-    opts <- list("algorithm" = "NLOPT_LN_COBYLA",
-                 "xtol_rel" = 1e-12, "print_level" = 0)
-
-    lmr <- nloptr(x0 = rep(1/n_assets, n_assets),
-                  eval_f = port_vol,
-                  lb = rep(0, n_assets),
-                  ub = rep(100, n_assets),
-                  eval_g_ineq = rp_nonlinear_constraint,
-                  opts = opts,
-                  cov_mat = cov_mat,
-                  b = strat$default_weights,
-                  c = -0.25)
-    rp_weight <- lmr$solution
-    rp_weight <- rp_weight/sum(rp_weight)
-
-    # check that risk contributions are equal
-    rcs <- rp_weight * (cov_mat %*% rp_weight)
-    rcs <- rcs/port_vol(rp_weight, cov_mat)
-    print(rcs)
+    rp_weight <- riskParityPortfolio(cov_mat,
+                                     b = strat$default_weights)$w
   } else {
     rp_weight <- rep(0, n_assets)
   }

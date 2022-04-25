@@ -57,7 +57,7 @@ factor_strat  <- list(name = "EW Factors",
                       tickers = c("MTUM", "VLUE", "USMV", "QUAL"),
                       default_weights = c(0.25, 0.25, 0.25, 0.25),
                       rebalance_frequency = "month",
-                      portfolio_rule_fn = constant_weights)
+                      portfolio_rule_fn = "constant_weights")
 
 # get data for tickers using getSymbols
 factor_ETFs <- get_data_from_tickers(factor_strat$tickers,

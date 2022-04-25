@@ -64,7 +64,21 @@
 #' @importFrom PerformanceAnalytics table.DownsideRisk
 backtest_allocation <- function(strat, P, R, risk_free = 0, start_date = NULL){
 
-  # some checks
+  # check that strat contains the expected elements
+  if (!("tickers" %in% names(strat))){
+    stop("Expected tickers in the strat object")
+  }
+  if (!("default_weights" %in% names(strat))){
+    stop("Expected default_weights in the strat object")
+  }
+  if (!("rebalance_frequency" %in% names(strat))){
+    stop("Expected rebalance_frequency in the strat object")
+  }
+  if (!("portfolio_rule_fn" %in% names(strat))){
+    stop("Expected portfolio_rule_fn in the strat object")
+  }
+
+  # if risk-free was provided, check it has the correct size
   rf_len <- length(risk_free)
   if (rf_len > 1){
     if (rf_len != nrow(R)){
