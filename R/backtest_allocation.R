@@ -167,6 +167,11 @@ backtest_allocation <- function(strat, P, R, risk_free = 0, start_date = NULL){
     dates_between <- dates[dates > rebal_dates[i_date] &
                            dates <= rebal_dates[i_date+1]]
 
+    if (i_date == length(rebal_dates)-1){
+      dates_between <- dates[dates > rebal_dates[i_date] &
+                               dates <= dates[length(dates)]]
+    }
+
     weight_risk_assets <- sum(weights[i_date])
     weight_risk_free <- 1 - weight_risk_assets
     risk_free_account <- cumprod(c(weight_risk_free,
