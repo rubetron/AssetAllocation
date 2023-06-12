@@ -52,11 +52,11 @@ tactical_TrendFriend <- function(strat, reb_date, P, R, risk_free = NULL){
     if ("n_months_trend" %in% names(strat$params)){
       n_months_trend <- strat$params$n_months_trend
     } else{
-      warning("n_months_trend not found in strat$params. Defaulting to 10")
-      n_months_trend <- 10 # default look-back for Ivy
+      warning("n_months_trend not found in strat$params. Defaulting to 12")
+      n_months_trend <- 12 # default look-back for Ivy
     }
   } else {
-    n_months_trend <- 10 # default look-back for Ivy
+    n_months_trend <- 12 # default look-back for Ivy
   }
 
   # check that user supplied a specific window for vol calculation
@@ -67,10 +67,10 @@ tactical_TrendFriend <- function(strat, reb_date, P, R, risk_free = NULL){
       n_months_vol <- strat$params$n_months_vol
     } else{
       warning("n_months_vol not found in strat$params. Defaulting to 12")
-      n_months_vol <- 10 # default look-back for Ivy
+      n_months_vol <- 12 # default look-back for Ivy
     }
   } else {
-    n_months_vol <- 10 # default look-back for Ivy
+    n_months_vol <- 12 # default look-back for Ivy
   }
 
   # step 1: calculation of weights using inverse-volatility weights

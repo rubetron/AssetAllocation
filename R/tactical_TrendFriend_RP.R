@@ -53,28 +53,29 @@ tactical_TrendFriend_RP <- function(strat, reb_date, P, R, risk_free = NULL){
     if ("n_months_trend" %in% names(strat$params)){
       n_months_trend <- strat$params$n_months_trend
     } else{
-      warning("n_months_trend not found in strat$params. Defaulting to 10")
-      n_months_trend <- 10 # default look-back for Ivy
+      warning("n_months_trend not found in strat$params. Defaulting to 12")
+      n_months_trend <- 12 # default look-back for Ivy
     }
   } else {
-    n_months_trend <- 10 # default look-back for Ivy
+    n_months_trend <- 12 # default look-back for Ivy
   }
 
   # check that user supplied a specific value for number of months to estimate
-  # covariance matrix. if not, use the default 2 years
+  # covariance matrix. if not, use n_months_trend
   if (length(strat$params) > 0){
     # check that there is element n_days_cov in params
     if ("n_days_cov" %in% names(strat$params)){
-      n_days_cov <- strat$params$n_days_cov
+      n_months_cov <- strat$params$n_months_cov
     } else{
-      warning("n_days_cov not found in strat$params. Defaulting to 252*2")
-      n_days_cov <- 252*2 # default cov estimations window in days
+      warning("n_days_cov not found in strat$params. Defaulting to 12 months")
+      n_months_cov <- 12 # default cov estimations window in months
     }
   } else {
-    n_days_cov <- 252*2 # default cov estimations window in days
+    n_months_cov <- 12 # default cov estimations window in months
   }
 
   # step 1: calculation of weights using full risk parity
+  n_days_cov = n_months_cov*21
   if (nrow(R) >= n_days_cov){
     R <- R[seq(from = max(1, nrow(R) - n_days_cov + 1),
                to = nrow(R)), ]
@@ -85,7 +86,7 @@ tactical_TrendFriend_RP <- function(strat, reb_date, P, R, risk_free = NULL){
                to = nrow(R)), ]
 
     # check if there is at least one year of daily data
-    if (nrow(R) > 252){
+    if (nrow(R) >= 220){
       # estimate covariance matrix with available data
       cov_mat <- covEstimation(R,
                                control = list(type = 'ewma',
