@@ -190,7 +190,7 @@ JPM_Eff5      <- list(name = "JPM Efficiente 5",
                                   "BIL"), # Cash / SPDR Bloomberg 1-3 Month T-Bill ETF
                       default_weights = rep(1/13, 13),
                       rebalance_frequency = "month",
-                      portfolio_rule_fn = "JPM_Efficiente5")
+                      portfolio_rule_fn = "tactical_JPM5")
 
 static <- list(us_60_40 = us_60_40,
                golden_butterfly = golden_butterfly,
