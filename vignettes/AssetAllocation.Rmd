@@ -19,7 +19,7 @@ This vignette illustrates some ways to use the `AssetAllocation` package to back
 
 # Rationale for the package
 
-There are several alternatives to backtest systematic/quantitative investment strategies in R. The aim of this package is to provide a simplified way to backtest simple asset allocation rules. That is, with a few lines of code, the user can create and backtest simple static or dynamic (tactical) asset allocation strategies.
+There are several alternatives to backtesting systematic/quantitative investment strategies in R. The aim of this package is to provide a simplified way to backtest simple asset allocation rules. That is, with a few lines of code, the user can create and backtest simple static or dynamic (tactical) asset allocation strategies.
 
 The package comes with a set of pre-loaded static and tactical strategies, which are in the `asset_allocations` object. However, the user can easily create their own strategies, either by choosing specific allocations in a static asset allocation, or by creating their own custom function that implements a dynamic strategy.
 

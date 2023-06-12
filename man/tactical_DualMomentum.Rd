@@ -26,7 +26,7 @@ A numeric vector of weights after applying the rule.
 \description{
 \code{tactical_DualMomentum} determines asset allocations for a strategy
 according to the dual momentum approach described in Antonacci (2016)
-<doi:https://dx.doi.org/10.2139/ssrn.2042750>.
+<https://dx.doi.org/10.2139/ssrn.2042750>.
 }
 \details{
 Dual momentum sorts assets within each asset class described in \code{strat}

@@ -32,7 +32,13 @@ daily_account_calc <- function(w, R){
     PortMatrix[1, 1:n_assets] <- w
     PortMatrix[2:nrow(PortMatrix), 1:n_assets] <- 1 + R
     PortMatrix <- apply(PortMatrix, 2, cumprod)
-    port_notional <- rowSums(PortMatrix[, 1:n_assets])
+
+    if (n_assets == 1){
+      port_notional <- PortMatrix[, 1:n_assets]
+    } else{
+      port_notional <- rowSums(PortMatrix[, 1:n_assets])
+    }
+
     return(port_notional)
   }
 }

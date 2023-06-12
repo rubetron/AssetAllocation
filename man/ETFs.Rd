@@ -17,7 +17,7 @@ An object of class \code{"list"}
 data(ETFs)
 }
 \description{
-Data set containing daily prices and total returns for 24 exchange-traded
+Data set containing daily prices and total returns for 37 exchange-traded
 funds (ETFs) as well as daily returns for U.S. Treasury bills
 (risk-free asset).
 }

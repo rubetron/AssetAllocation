@@ -146,6 +146,52 @@ aaa     <- list(name = "Adaptive Asset Allocation",
                 portfolio_rule_fn = "tactical_AAA")
 
 
+trend_friend     <- list(name = "Trend Friend original",
+                         tickers = c("IEF",   # U.S. Intermediate-Term Bonds
+                                     "BWX",   # International bonds
+                                     "DBC",   # Commodities
+                                     "EEM",   # Emerging stocks
+                                     "EWJ",   # Japanese stocks
+                                     "SPY",   # U.S. stocks
+                                     "RWO",   # Real Estate, Global
+                                     "VNQ",   # US REITs
+                                     "EFA"),  # International Dev. Equity
+                         default_weights = rep(1/9, 9),
+                         rebalance_frequency = "month",
+                         portfolio_rule_fn = "tactical_TrendFriend")
+
+trend_friend_RP     <- list(name = "Trend Friend Risk Parity",
+                            tickers = c("IEF",   # U.S. Intermediate-Term Bonds
+                                        "BWX",   # International bonds
+                                        "DBC",   # Commodities
+                                        "EEM",   # Emerging stocks
+                                        "EWJ",   # Japanese stocks
+                                        "SPY",   # U.S. stocks
+                                        "RWO",   # Real Estate, Global
+                                        "VNQ",   # US REITs
+                                        "EFA"),  # International Dev. Equity
+                            default_weights = rep(1/9, 9),
+                            rebalance_frequency = "month",
+                            portfolio_rule_fn = "tactical_TrendFriend_RP")
+
+JPM_Eff5      <- list(name = "JPM Efficiente 5",
+                      tickers = c("SPY", # U.S. Equities / SPDR S&P 500® ETF Trust
+                                  "IWM", # U.S. Small Cap Equities / iShares® Russell 2000 ETF
+                                  "EFA", # Developed Market Equities (excluding U.S.) / iShares® MSCI EAFE ETF
+                                  "TLT", # Treasuries / iShares® 20+ Year Treasury Bond ETF
+                                  "LQD", # Investment Grade Bonds / iShares® iBoxx$ Investment Grade Corporate Bond ETF
+                                  "HYG", # High Yield Bonds / iShares® iBoxx$ High Yield Corporate Bond ETF
+                                  "EEM", # Emerging Market Equities / iShares® MSCI Emerging Markets ETF
+                                  "EMB", # Emerging Market Bonds / iShares® JPMorgan USD Emerging Markets Bond ETF
+                                  "IYR", # Real Estate / iShares® U.S. Real Estate ETF
+                                  "GSG", # Broad Commodities / iShares® S&P GSCI™ Commodity-Indexed Trust
+                                  "GLD", # Gold / SPDR® Gold Trust
+                                  "TIP", # Inflation Protected Bonds iShares® TIPS Bond ETF
+                                  "BIL"), # Cash / SPDR Bloomberg 1-3 Month T-Bill ETF
+                      default_weights = rep(1/13, 13),
+                      rebalance_frequency = "month",
+                      portfolio_rule_fn = "JPM_Efficiente5")
+
 static <- list(us_60_40 = us_60_40,
                golden_butterfly = golden_butterfly,
                rob_arnott= rob_arnott,
@@ -166,7 +212,10 @@ static <- list(us_60_40 = us_60_40,
 tactical <- list(ivy = ivy,
                  raa = raa,
                  dual_mom = dual_mom,
-                 aaa = aaa)
+                 aaa = aaa,
+                 trend_friend = trend_friend,
+                 trend_friend_RP = trend_friend_RP,
+                 JPM_Eff5 = JPM_Eff5)
 
 asset_allocations <- list(static = static,
                           tactical = tactical)

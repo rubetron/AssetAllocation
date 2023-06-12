@@ -21,9 +21,26 @@
 #' @importFrom quantmod getSymbols
 #' @importFrom PerformanceAnalytics CalculateReturns
 #' @importFrom zoo index na.locf
+#' @importFrom curl has_internet
 #' @import xts
 get_data_from_tickers <- function(tickers, starting_date = "2007-01-01"){
-  getSymbols(tickers, from = starting_date, source = 'yahoo')
+
+  # attempt to retrieve data from Yahoo Finance. Fail "gracefully"
+  # in case there's an issue
+
+  if (!has_internet()) {
+    message("Problem connecting to Yahoo Finance. Check internet connection or try again later.")
+    return(invisible(NULL))
+  } else{
+    suppressWarnings({
+      msg <- "Problem retrieving data from Yahoo. Check server status or that tickers are valid."
+      x <- try(silent = TRUE, getSymbols(tickers, from = starting_date, source = 'yahoo'))
+      if (inherits(x, "try-error")) {
+        message( msg )
+        return(FALSE)
+      }
+    })
+  }
 
   # align all prices into one xts object
   prices <- xts()

@@ -2,13 +2,12 @@ Ticker,Fund Name,Geographic Focus,Fund Type
 SPY,SPDR S&P 500 ETF Trust,United States of America,Equity
 IEF,iShares 7-10 Year Treasury Bond ETF,United States of America,Bond
 SHY,iShares 1-3 Year Treasury Bond ETF,United States of America,Bond
-TLT,iShares 20+ Year Treasury Bond ETF,United States of America,Bond
+LQD,iShares iBoxx $ Inv Grade Corporate Bond ETF,United States of America,Bond
 VTI,Vanguard Total Stock Market Index Fund;ETF,United States of America,Equity
 IWN,iShares Russell 2000 Value ETF,United States of America,Equity
 GLD,SPDR Gold Shares,Global,Commodity
 BND,Vanguard Total Bond Market Index Fund;ETF,United States of America,Bond
 BNDX,Vanguard Total International Bond Index Fund;ETF,Global Ex US,Bond
-LQD,iShares iBoxx $ Inv Grade Corporate Bond ETF,United States of America,Bond
 VEU,Vanguard FTSE All-World ex US Index Fund;ETF,Global Ex US,Equity
 VNQ,Vanguard Real Estate Index Fund;ETF,United States of America,Equity
 TIP,iShares TIPS Bond ETF,United States of America,Bond
@@ -31,3 +30,9 @@ REM,iShares Mortgage Real Estate ETF,United States of America,Equity
 RWX,SPDR Dow Jones International Real Estate ETF,Global Ex US,Equity
 VGK,Vanguard European Stock Index Fund;ETF,Europe,Equity
 EWJ,iShares MSCI Japan ETF,Japan,Equity
+BWX,SPDR Bloomberg International Treasury Bond ETF,Global Ex US,Bond
+RWO,SPDR Dow Jones Global Real Estate ETF,Global,Equity
+EMB,iShares JPMorgan USD Emerging Markets Bond ETF,Global Emerging Markets,Bond
+IYR,iShares US Real Estate ETF,United States of America,Equity
+TLT,iShares 20+ Year Treasury Bond ETF,United States of America,Bond
+GSG,iShares S&P GSCI Commodity-Indexed Trust,United States of America,Commodity

@@ -19,9 +19,13 @@
 #' @param R An xts object with daily returns of the tickers in strat.
 #' @param risk_free Either an xts object with daily returns of the risk-free
 #' @examples
-#' ivy  <- asset_allocations$tactical$ivy
+#' trend_friend  <- asset_allocations$tactical$trend_friend
 #' reb_date <- as.Date("2022-03-31")
-#' tactical_TrendFriend_RP(ivy, reb_date, ETFs$Prices[, ivy$tickers], ETFs$Returns[, ivy$tickers])
+#' tactical_TrendFriend_RP(trend_friend,
+#'                         reb_date,
+#'                         ETFs$Prices[, trend_friend$tickers],
+#'                         ETFs$Returns[, trend_friend$tickers]
+#'                         )
 #' @return A numeric vector of weights after applying the rule.
 #' @export
 #' @import xts

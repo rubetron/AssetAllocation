@@ -33,6 +33,9 @@ The tactical asset allocations included are:
 \item Robust Asset Allocation
 \item Dual Momentum
 \item Adaptive Asset Allocation
+\item The Trend is Your Friend (original)
+\item The Trend is Your Friend (real risk parity)
+\item JPMorgan Efficiente 5
 }
 
 }

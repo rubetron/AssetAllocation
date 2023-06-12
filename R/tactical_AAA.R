@@ -3,7 +3,7 @@
 #'
 #' \code{tactical_AAA} determines asset allocations according to the Adaptive
 #' Asset Allocation approach described in Butler, Philbrick, Gordillo, and
-#' Varadi (2012) <doi:https://dx.doi.org/10.2139/ssrn.2328254>.
+#' Varadi (2012) <https://dx.doi.org/10.2139/ssrn.2328254>.
 #'
 #' The Adaptive Asset Allocation strategy sorts a specific list of assets
 #' based on 6-month momentum, selects the top 5 assets, and then calculates

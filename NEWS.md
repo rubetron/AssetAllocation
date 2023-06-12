@@ -1,3 +1,19 @@
+# AssetAllocation 1.1.0
+
+-   This is a minor update to the package which fixed some minor issues and adds some new strategies.
+
+-   A bug in `daily_account_calc` function was fixed which prevented strategies with a simple ticker to be used.
+
+-   The `get_data_from_tickers` function, which makes use of the `quantmod` package to retrieve data from online sources (Yahoo Finance) was changed to allow it to "fail gracefully" in case the server can't be reached.
+
+-   Three new dynamic asset allocation strategies were added:
+
+    -   Trend is Your Friend (original) (rebalance function: `tactical_TrendFriend`)
+
+    -   Trend is Your Friend (full risk parity) (rebalance function: `tactical_TrendFriend_RP`)
+
+    -   JPMorgan Efficiente 5 (rebalance function: `tactical_JPM5`)
+
 # AssetAllocation 1.0.0
 
 -   This is a major update to the package which includes changes to allow dynamic (tactical) asset allocation strategies.
