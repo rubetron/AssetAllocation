@@ -1,3 +1,7 @@
+# AssetAllocation 1.1.1
+
+-   This is a patch to fix an issue in one of the preloaded asset allocation strategies in the object `asset_allocations`. The field for the rebalancing function for the JPMorgan Efficiente 5 strategy had the wrong name.
+
 # AssetAllocation 1.1.0
 
 -   This is a minor update to the package which fixed some minor issues and adds some new strategies.
