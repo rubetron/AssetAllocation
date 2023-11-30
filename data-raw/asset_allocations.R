@@ -21,7 +21,7 @@ rob_arnott <- list(name = "Rob Arnott Portfolio",
 
 globalAA <- list(name = "Global Asset Allocation",
                  tickers = c("SPY", "EFA", "EEM", "LQD", "BNDX", "TLT", "TIP", "DBC", "GLD", "VNQ"),
-                 default_weights = c(0.18, 0.135, 0.045, 0.18, 0.144, 0.135, 0.018, 0.05, 0.05, 0.045),
+                 default_weights = c(0.18, 0.135, 0.045, 0.198, 0.144, 0.135, 0.018, 0.05, 0.05, 0.045),
                  rebalance_frequency = "month",
                  portfolio_rule_fn = "constant_weights")
 

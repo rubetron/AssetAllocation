@@ -17,5 +17,5 @@ get_rebalance_dates <- function(dates, reb_freq, k = 1){
   # reb_freq must be one of the following:
   # "days", "weeks", "months", "quarters", and "years"
   reb_dates <- dates[endpoints(dates, on = reb_freq, k)]
-  return(reb_dates[seq(from = 1, to = length(reb_dates)-1)])
+  return(reb_dates[seq(from = 1, to = length(reb_dates))])
 }
